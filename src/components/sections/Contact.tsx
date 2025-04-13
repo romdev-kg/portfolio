@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import AnimatedSection from "@/components/common/AnimatedSection";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,9 +7,16 @@ import { MapPin, Phone, Mail } from "lucide-react";
 import { toast } from "sonner";
 import SocialLinks from "@/components/common/SocialLinks";
 import { useLang } from "@/context/LangContext";
+import emailjs from '@emailjs/browser';
+
+// Необходимо зарегистрироваться на emailjs.com и получить эти ключи
+const EMAILJS_SERVICE_ID = "service_99jxkqm"; // Замените на ваш Service ID
+const EMAILJS_TEMPLATE_ID = "template_ljs0pzn"; // Замените на ваш Template ID
+const EMAILJS_PUBLIC_KEY = "igXRceCdlK8pDFE7D"; // Замените на ваш Public Key
 
 export default function Contact() {
   const { lang } = useLang();
+  const formRef = useRef<HTMLFormElement>(null);
   
   const [formData, setFormData] = useState({
     name: "",
@@ -28,16 +35,33 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
+    // Отправка сообщения через EmailJS
+    emailjs.sendForm(
+      EMAILJS_SERVICE_ID,
+      EMAILJS_TEMPLATE_ID,
+      formRef.current!,
+      EMAILJS_PUBLIC_KEY
+    )
+    .then((result) => {
+      console.log('Email successfully sent!', result.text);
       toast.success(
         lang === "ru" 
           ? "Сообщение отправлено! Я свяжусь с вами в ближайшее время."
           : "Message sent! I will contact you soon."
       );
       setFormData({ name: "", email: "", message: "" });
+    })
+    .catch((error) => {
+      console.error('Failed to send email:', error.text);
+      toast.error(
+        lang === "ru" 
+          ? "Ошибка при отправке сообщения. Пожалуйста, попробуйте позже."
+          : "Error sending message. Please try again later."
+      );
+    })
+    .finally(() => {
       setIsSubmitting(false);
-    }, 1000);
+    });
   };
 
   const contactInfo = [
@@ -118,7 +142,7 @@ export default function Contact() {
                 {lang === "ru" ? "Отправьте сообщение" : "Send a Message"}
               </h3>
               
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-medium">
                     {lang === "ru" ? "Имя" : "Name"}
