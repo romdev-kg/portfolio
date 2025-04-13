@@ -18,26 +18,28 @@ export default function About() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mt-8">
           <AnimatedSection animation="slide" delay={200} className="md:col-span-1">
             <div className="rounded-lg overflow-hidden bg-background shadow-lg">
-              <div className="aspect-square w-full bg-gradient-to-br from-primary/20 to-blue-500/20 relative">
-                <div className="absolute inset-0 flex items-center justify-center text-4xl font-bold text-primary/30">
-                  {lang === "ru" ? "Фото" : "Photo"}
-                </div>
+              <div className="aspect-square w-full bg-muted relative">
+                <img 
+                  src="/images/ramazan.png" 
+                  alt={lang === "ru" ? "Рамазан Джоробаев" : "Ramazan Dzhorobaev"} 
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2">
-                  {lang === "ru" ? "Рамазан Джоробаев" : "Ramazan Dzhorobaev"}
+                  {lang === "ru" ? " Рамазан Джоробаев" : "Ramazan Dzhorobaev"}
                 </h3>
                 <p className="text-muted-foreground mb-4">
-                  {lang === "ru" ? "Frontend-разработчик" : "Frontend Developer"}
+                  {lang === "ru" ? " Frontend-разработчик" : "Frontend Developer"}
                 </p>
                 <div className="flex flex-col gap-2 text-sm">
                   <div>
                     <span className="font-semibold">{lang === "ru" ? "Опыт:" : "Experience:"}</span> 
-                    {lang === "ru" ? "2+ года" : "2+ years"}
+                    {lang === "ru" ? " 2+ года" : "2+ years"}
                   </div>
                   <div>
-                    <span className="font-semibold">{lang === "ru" ? "Образование:" : "Education:"}</span> 
-                    {lang === "ru" ? "Салымбеков Университет IT и Бизнеса" : "Salymbekov University of IT and Business"}
+                    <span className="font-semibold">{lang === "ru" ? "Образование: " : "Education:"}</span> 
+                    {lang === "ru" ? " Салымбеков Университет IT и Бизнеса" : "Salymbekov University of IT and Business"}
                   </div>
                   <div>
                     <span className="font-semibold">{lang === "ru" ? "Местонахождение:" : "Location:"}</span> 
@@ -45,7 +47,7 @@ export default function About() {
                   </div>
                 </div>
                 <Button className="w-full mt-4" variant="outline" asChild>
-                  <a href="#" download>
+                  <a href="/images/projects/resume.pdf" download>
                     <FileText className="mr-2 h-4 w-4" />
                     {lang === "ru" ? "Скачать резюме" : "Download Resume"}
                   </a>
@@ -122,19 +124,35 @@ export default function About() {
                 <h3 className="section-subtitle">
                   {lang === "ru" ? "Образование" : "Education"}
                 </h3>
-                <div className="border-l-4 border-primary/50 pl-4">
-                  <h4 className="font-semibold">
-                    {lang === "ru" ? "Компьютерная наука" : "Computer Science"}
-                  </h4>
-                  <p className="text-sm text-muted-foreground">
-                    {lang === "ru" ? "Салымбеков Университет IT и Бизнеса • 2021 - 2025" : "Salymbekov University of IT and Business • 2021 - 2025"}
-                  </p>
-                  <p className="mt-1">
-                    {lang === "ru" 
-                      ? "Специализация в компьютерных науках и разработке. Разработал на React проект \"Вентстрой\" для компаний вентиляционных труб."
-                      : "Specialization in computer science and development. Developed a React project \"Ventstroy\" for ventilation pipe companies."
-                    }
-                  </p>
+                <div className="space-y-4">
+                  <div className="border-l-4 border-primary/50 pl-4">
+                    <h4 className="font-semibold">
+                      {lang === "ru" ? "Компьютерная наука" : "Computer Science"}
+                    </h4>
+                    <p className="text-sm text-muted-foreground">
+                      {lang === "ru" ? "INTI International University, Малайзия • Январь 2025 - Май 2025" : "INTI International University, Malaysia • January 2025 - May 2025"}
+                    </p>
+                    <p className="mt-1">
+                      {lang === "ru" 
+                        ? "Обучение по программе обмена в области компьютерных наук. Изучение передовых технологий разработки и международных практик программирования."
+                        : "Exchange program in Computer Science. Study of advanced development technologies and international programming practices."
+                      }
+                    </p>
+                  </div>
+                  <div className="border-l-4 border-primary/50 pl-4">
+                    <h4 className="font-semibold">
+                      {lang === "ru" ? "Компьютерная наука" : "Computer Science"}
+                    </h4>
+                    <p className="text-sm text-muted-foreground">
+                      {lang === "ru" ? "Салымбеков Университет IT и Бизнеса • 2021 - 2025" : "Salymbekov University of IT and Business • 2021 - 2025"}
+                    </p>
+                    <p className="mt-1">
+                      {lang === "ru" 
+                        ? "Специализация в компьютерных науках и разработке. Разработал на React проект \"Вентстрой\" для компаний вентиляционных труб."
+                        : "Specialization in computer science and development. Developed a React project \"Ventstroy\" for ventilation pipe companies."
+                      }
+                    </p>
+                  </div>
                 </div>
               </div>
               
